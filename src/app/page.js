@@ -7,8 +7,8 @@ import { Button } from "@heroui/button";
 
 export default function Home() {
   return (
-    <div className="container mx-auto w-full max-w-2xl py-20">
-      <div className="relative mb-14 h-1.5 w-full bg-primary">
+    <div className="container mx-auto w-full max-w-2xl px-5 py-20">
+      <div className="relative mb-20 h-1.5 w-full bg-primary">
         <div className="absolute -top-8 left-1/2 -translate-x-1/2 bg-white px-3">
           <Image src={"/logo.png"} alt="/logo.png" width={256} height={256} />
         </div>
@@ -50,9 +50,9 @@ export default function Home() {
         </div>
       </div>
 
-      <div className="relative my-20 mb-14 h-1.5 w-full bg-primary">
-        <div className="absolute -top-8 left-1/2 -translate-x-1/2 bg-white px-3">
-          <Image src={"/logo.png"} alt="/logo.png" width={256} height={256} />
+      <div className="relative my-20 h-1.5 w-full bg-primary">
+        <div className="absolute -top-6 left-1/2 -translate-x-1/2 bg-white px-3">
+          <Image src={"/logo2.png"} alt="/logo2.png" width={50} height={50} />
         </div>
       </div>
 
