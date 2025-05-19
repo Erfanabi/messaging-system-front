@@ -6,7 +6,7 @@ module.exports = {
     "./pages/**/*.{js,ts,jsx,tsx,mdx}",
     "./components/**/*.{js,ts,jsx,tsx,mdx}",
     "./src/**/*.{js,ts,jsx,tsx,mdx}",
-    "./node_modules/@heroui/theme/dist/components/(input|form).js",
+    "./node_modules/@heroui/theme/dist/components/(button|checkbox|input|ripple|spinner|form).js",
   ],
   theme: {
     extend: {},

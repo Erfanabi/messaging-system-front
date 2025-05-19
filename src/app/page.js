@@ -1,8 +1,9 @@
 "use client";
 
 import Image from "next/image";
-import { Input, Textarea } from "@heroui/input";
+import { Textarea } from "@heroui/input";
 import FormInput from "@/components/FormInput";
+import { Button } from "@heroui/button";
 
 export default function Home() {
   return (
@@ -60,18 +61,22 @@ export default function Home() {
           Check the item you need and write a description.
         </p>
 
-        <FormInput label="Phone Number" />
+        <FormInput label="Phone Number" placeholder="Comfort pillow for...." />
 
-        <FormInput label="Phone Number" />
+        <FormInput label="Phone Number" placeholder="King mattress for...." />
 
-        <FormInput label="Phone Number" />
+        <FormInput label="Phone Number" placeholder="Comfort cover for...." />
 
-        <FormInput label="Phone Number" />
+        <FormInput label="Phone Number" placeholder="Comfort duvet for...." />
 
-        <FormInput label="Phone Number" />
+        <FormInput label="Phone Number" placeholder="Face Towel...." />
 
-        <FormInput label="Phone Number" />
+        <FormInput label="Phone Number" placeholder="Textile Set...." />
       </div>
+
+      <Button className="mt-10 w-full" radius="sm" color="primary" size="md">
+        SEND ORDER
+      </Button>
     </div>
   );
 }
