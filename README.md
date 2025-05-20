@@ -1,36 +1,90 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Hotel Messaging System
 
-## Getting Started
+This project is a messaging system for hotels developed using Next.js and modern React libraries. It provides a user-friendly form interface for submitting various hotel service requests.
 
-First, run the development server:
+## Key Features
 
+- Hotel information and contact details registration form
+- Selection and description of required items (pillows, mattresses, sheets, etc.)
+- Support for Gulf region country phone numbers
+- Form validation using Formik and Yup
+- Modern and responsive UI using HeroUI and Tailwind CSS
+- WhatsApp integration for message delivery
+
+## Technologies Used
+
+- **Next.js**: React framework for web application development
+- **Formik**: Form management
+- **Yup**: Form validation
+- **HeroUI**: Modern UI components
+- **Tailwind CSS**: CSS framework for UI design
+- **React Phone Input 2**: Phone number input component
+- **React Hot Toast**: Notification messages display
+
+## Prerequisites
+
+- Node.js version 18 or higher
+- npm or yarn
+
+## Installation and Setup
+
+1. Clone the project:
 ```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+git clone [repository-url]
+cd messaging-system-front
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+2. Install dependencies:
+```bash
+npm install
+```
 
-You can start editing the page by modifying `app/page.js`. The page auto-updates as you edit the file.
+3. Run the development server:
+```bash
+npm run dev
+```
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+The project will be available at `http://localhost:3000`
 
-## Learn More
+## Project Structure
 
-To learn more about Next.js, take a look at the following resources:
+```
+├── src/
+│   ├── app/                 # Main application components
+│   │   ├── layout.js        # Main application layout
+│   │   └── page.js          # Main page with request form
+│   └── components/          # Reusable components
+│       ├── CheckboxInput.js # Checkbox component with description input
+│       └── FormInput.js     # Form input component
+├── public/                  # Static files
+└── tailwind.config.js      # Tailwind CSS configuration
+```
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## How to Use
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+1. Fill out the form with hotel information and contact details
+2. Select required items and enter necessary descriptions
+3. Click the submit button to send the information via API to WhatsApp
 
-## Deploy on Vercel
+## Environment Setup
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+To connect to the WhatsApp API, you need to set up environment variables. Create a `.env.local` file in the project root:
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+```env
+NEXT_PUBLIC_API_URL=http://localhost:3000/api
+```
+
+## Development
+
+1. To add new form fields:
+   - Add field in `initialValues` in `page.js`
+   - Add validation rules in `validationSchema`
+   - Add corresponding form component
+
+2. To modify appearance and styling:
+   - Configure colors and theme in `tailwind.config.js`
+   - Custom styles in `globals.css`
+
+## Contributing
+
+We welcome your contributions to improve this project. Please create a Pull Request for any suggested changes.
