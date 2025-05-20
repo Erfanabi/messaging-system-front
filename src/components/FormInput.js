@@ -6,6 +6,8 @@ const FormInput = ({
   placeholder = "",
   type = "text",
   className = "",
+  value = "",
+  onChange = () => {},
 }) => {
   return (
     <div className={`w-full space-y-1 ${className}`}>
@@ -18,10 +20,11 @@ const FormInput = ({
         size="md"
         radius="sm"
         className="w-full"
-        aria-label="ddddd"
         classNames={{ inputWrapper: "border-1" }}
         aria-labelledby={label}
         placeholder={placeholder}
+        value={value}
+        onChange={onChange}
       />
     </div>
   );
