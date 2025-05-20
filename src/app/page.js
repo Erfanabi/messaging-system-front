@@ -22,7 +22,25 @@ const validationSchema = Yup.object({
 });
 
 export default function Home() {
-  const gulfCountries = ["ae", "bh", "kw", "om", "qa", "sa", "ir"];
+  const gulfCountries = [
+    "ae", // امارات
+    "bh", // بحرین
+    "kw", // کویت
+    "om", // عمان
+    "qa", // قطر
+    "sa", // عربستان
+    "ir", // ایران
+    // کشور های معروف
+    "us", // آمریکا
+    "ca", // کانادا
+    "gb", // انگلستان (UK)
+    "fr", // فرانسه
+    "de", // آلمان
+    "au", // استرالیا
+    "in", // هند
+    "cn", // چین
+    "jp", // ژاپن
+  ];
 
   const [submitResult, setSubmitResult] = useState(false);
 
@@ -192,7 +210,8 @@ export default function Home() {
               </div>
 
               <div className="flex items-start gap-x-8">
-                <div className="w-1/2">
+                <div className="w-1/2 space-y-1">
+                  <label className="block text-sm font-light">"</label>
                   <Field name="description">
                     {({ field }) => (
                       <Textarea
