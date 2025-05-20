@@ -6,8 +6,10 @@ import FormInput from "@/components/FormInput";
 import { Button } from "@heroui/button";
 import CheckboxInput from "@/components/CheckboxInput";
 import { useState } from "react";
-import { Formik, Form, Field, ErrorMessage, FastField } from "formik";
+import { Formik, Form, Field, FastField } from "formik";
 import * as Yup from "yup";
+import PhoneInput from "react-phone-input-2";
+import "react-phone-input-2/lib/style.css";
 
 const validationSchema = Yup.object({
   name: Yup.string().required("نام الزامی است"),
@@ -19,6 +21,8 @@ const validationSchema = Yup.object({
 });
 
 export default function Home() {
+  const gulfCountries = ["ae", "bh", "kw", "om", "qa", "sa", "ir"];
+
   const [submitResult, setSubmitResult] = useState({
     success: false,
     message: "",
@@ -26,7 +30,7 @@ export default function Home() {
 
   const initialValues = {
     name: "",
-    phoneNumber: "",
+    phoneNumber: "+971",
     whatsapp: "",
     hotelName: "",
     description: "",
@@ -121,7 +125,7 @@ export default function Home() {
               </p>
 
               <div className="flex items-start gap-x-8">
-                <>
+                <div className="flex w-1/2 flex-col">
                   <FastField
                     as={FormInput}
                     name="name"
@@ -131,32 +135,52 @@ export default function Home() {
                   {errors.name && touched.name && (
                     <div className="text-xs text-red-500">{errors.name}</div>
                   )}
-                </>
+                </div>
+                <div className="w-1/2 space-y-1">
+                  <label className="block text-sm font-light">
+                    Phone Number
+                  </label>
 
-                <>
-                  <FastField
-                    as={FormInput}
-                    name="phoneNumber"
-                    label="Phone Number"
-                    onChange={e => setFieldValue("phoneNumber", e.target.value)}
-                  />
-                  {errors.phoneNumber && touched.phoneNumber && (
-                    <div className="text-xs text-red-500">
-                      {errors.phoneNumber}
-                    </div>
-                  )}
-                </>
+                  <div className="flex flex-col">
+                    <Field name="phoneNumber">
+                      {({ field }) => (
+                        <PhoneInput
+                          country="ae" // پیش‌فرض امارات
+                          onlyCountries={gulfCountries} // فقط کشورهای حوزه خلیج فارس + ایران
+                          enableAreaCodes={true}
+                          value={field.value}
+                          onChange={value =>
+                            setFieldValue("phoneNumber", `+${value}`)
+                          }
+                          inputClass="phone-input w-full"
+                          inputProps={{
+                            name: "phoneNumber",
+                            required: true,
+                            autoFocus: true,
+                          }}
+                        />
+                      )}
+                    </Field>
+                    {errors.phoneNumber && touched.phoneNumber && (
+                      <div className="text-xs text-red-500">
+                        {errors.phoneNumber}
+                      </div>
+                    )}
+                  </div>
+                </div>{" "}
               </div>
 
               <div className="flex items-start gap-x-8">
-                <FastField
-                  as={FormInput}
-                  name="whatsapp"
-                  label="WhatsAap"
-                  onChange={e => setFieldValue("whatsapp", e.target.value)}
-                />
+                <div className="w-1/2">
+                  <FastField
+                    as={FormInput}
+                    name="whatsapp"
+                    label="WhatsAap"
+                    onChange={e => setFieldValue("whatsapp", e.target.value)}
+                  />
+                </div>
 
-                <>
+                <div className="w-1/2">
                   <Field
                     as={FormInput}
                     name="hotelName"
@@ -168,11 +192,11 @@ export default function Home() {
                       {errors.hotelName}
                     </div>
                   )}
-                </>
+                </div>
               </div>
 
               <div className="flex items-start gap-x-8">
-                <>
+                <div className="w-1/2">
                   <Field name="description">
                     {({ field }) => (
                       <Textarea
@@ -186,9 +210,9 @@ export default function Home() {
                       />
                     )}
                   </Field>
-                </>
+                </div>
 
-                <>
+                <div className="flex w-1/2 flex-col">
                   <Field
                     as={FormInput}
                     name="positionAddress"
@@ -202,7 +226,7 @@ export default function Home() {
                       {errors.positionAddress}
                     </div>
                   )}
-                </>
+                </div>
               </div>
             </div>
 
