@@ -2,9 +2,9 @@
 @tailwind components;
 @tailwind utilities;
 
-/*.phone-input {*/
-/*  width: 100px !important;*/
-/*}*/
+.phone-input {
+  max-width: 100% !important;
+}
 
 /*.input-style {*/
 /*  width: 100px !important;*/

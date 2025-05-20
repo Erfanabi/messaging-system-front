@@ -31,7 +31,7 @@ export default function Home() {
   const initialValues = {
     name: "",
     phoneNumber: "+971",
-    whatsapp: "",
+    whatsapp: "+971",
     hotelName: "",
     description: "",
     positionAddress: "",
@@ -65,13 +65,17 @@ export default function Home() {
 
     try {
       console.log({ dataToSend });
-      const response = await fetch("https://your-backend-api.com/orders", {
+      const response = await fetch(`http://localhost:3000/api/send-whatsapp`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
         },
         body: JSON.stringify(dataToSend),
       });
+
+      const data = await response.json();
+
+      console.log({ data });
 
       if (response.ok) {
         resetForm();
@@ -129,7 +133,7 @@ export default function Home() {
                   <FastField
                     as={FormInput}
                     name="name"
-                    label="NamePhone Number"
+                    label="Name"
                     onChange={e => setFieldValue("name", e.target.value)}
                   />
                   {errors.name && touched.name && (
@@ -149,10 +153,11 @@ export default function Home() {
                           onlyCountries={gulfCountries} // فقط کشورهای حوزه خلیج فارس + ایران
                           enableAreaCodes={true}
                           value={field.value}
-                          onChange={value =>
-                            setFieldValue("phoneNumber", `+${value}`)
-                          }
-                          inputClass="phone-input w-full"
+                          onChange={value => {
+                            setFieldValue("phoneNumber", `+${value}`);
+                            setFieldValue("whatsapp", `+${value}`);
+                          }}
+                          inputClass="phone-input"
                           inputProps={{
                             name: "phoneNumber",
                             required: true,
@@ -167,7 +172,7 @@ export default function Home() {
                       </div>
                     )}
                   </div>
-                </div>{" "}
+                </div>
               </div>
 
               <div className="flex items-start gap-x-8">
@@ -175,7 +180,7 @@ export default function Home() {
                   <FastField
                     as={FormInput}
                     name="whatsapp"
-                    label="WhatsAap"
+                    label="WhatsApp"
                     onChange={e => setFieldValue("whatsapp", e.target.value)}
                   />
                 </div>
@@ -247,7 +252,6 @@ export default function Home() {
                   Check the item you need and write a description.
                 </p>
 
-                {/* بالش */}
                 <Field name="items.pillow.checked">
                   {({ field }) => (
                     <CheckboxInput
@@ -266,7 +270,6 @@ export default function Home() {
                   )}
                 </Field>
 
-                {/* تشک */}
                 <Field name="items.mattress.checked">
                   {({ field }) => (
                     <CheckboxInput
@@ -285,7 +288,6 @@ export default function Home() {
                   )}
                 </Field>
 
-                {/* ملحفه */}
                 <Field name="items.sheets.checked">
                   {({ field }) => (
                     <CheckboxInput
@@ -304,7 +306,6 @@ export default function Home() {
                   )}
                 </Field>
 
-                {/* لحاف */}
                 <Field name="items.duvet.checked">
                   {({ field }) => (
                     <CheckboxInput
@@ -323,7 +324,6 @@ export default function Home() {
                   )}
                 </Field>
 
-                {/* لوازم حمام */}
                 <Field name="items.bathLinen.checked">
                   {({ field }) => (
                     <CheckboxInput
@@ -342,7 +342,6 @@ export default function Home() {
                   )}
                 </Field>
 
-                {/* تجهیزات کامل اتاق */}
                 <Field name="items.completeRoomEquipment.checked">
                   {({ field }) => (
                     <CheckboxInput
