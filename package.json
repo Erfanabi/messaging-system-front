@@ -21,6 +21,7 @@
     "prettier-plugin-tailwindcss": "^0.6.11",
     "react": "^19.1.0",
     "react-dom": "^19.1.0",
+    "react-hot-toast": "^2.5.2",
     "react-phone-input-2": "^2.15.1",
     "yup": "^1.6.1"
   },

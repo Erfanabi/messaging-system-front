@@ -10,6 +10,7 @@ import { Formik, Form, Field, FastField } from "formik";
 import * as Yup from "yup";
 import PhoneInput from "react-phone-input-2";
 import "react-phone-input-2/lib/style.css";
+import toast from "react-hot-toast";
 
 const validationSchema = Yup.object({
   name: Yup.string().required("نام الزامی است"),
@@ -23,10 +24,7 @@ const validationSchema = Yup.object({
 export default function Home() {
   const gulfCountries = ["ae", "bh", "kw", "om", "qa", "sa", "ir"];
 
-  const [submitResult, setSubmitResult] = useState({
-    success: false,
-    message: "",
-  });
+  const [submitResult, setSubmitResult] = useState(false);
 
   const initialValues = {
     name: "",
@@ -46,7 +44,7 @@ export default function Home() {
   };
 
   const handleSubmit = async (values, { setSubmitting, resetForm }) => {
-    setSubmitResult({ success: false, message: "" });
+    setSubmitResult(false);
 
     const dataToSend = {
       name: values.name,
@@ -79,22 +77,15 @@ export default function Home() {
 
       if (response.ok) {
         resetForm();
-        setSubmitResult({
-          success: true,
-          message: "سفارش با موفقیت ارسال شد!",
-        });
+        setSubmitResult(true);
+        toast.success("success");
       } else {
-        setSubmitResult({
-          success: false,
-          message: "خطا در ارسال سفارش. لطفا دوباره تلاش کنید.",
-        });
+        setSubmitResult(false);
+        toast.error("error");
       }
     } catch (error) {
       console.error("Error submitting form:", error);
-      setSubmitResult({
-        success: false,
-        message: "خطا در ارسال سفارش. لطفا دوباره تلاش کنید.",
-      });
+      setSubmitResult(false);
     } finally {
       setSubmitting(false);
     }
