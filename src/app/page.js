@@ -13,12 +13,17 @@ import "react-phone-input-2/lib/style.css";
 import toast from "react-hot-toast";
 
 const validationSchema = Yup.object({
-  name: Yup.string().required("نام الزامی است"),
-  phoneNumber: Yup.string().required("شماره تلفن الزامی است"),
+  name: Yup.string().required("Name is required"),
+  phoneNumber: Yup.string()
+    .required("Phone number is required")
+    .matches(
+      /^\+\d{10,15}$/,
+      "Phone number must include country code and be 10 to 15 digits long",
+    ),
   whatsapp: Yup.string(),
-  hotelName: Yup.string().required("نام هتل الزامی است"),
-  description: Yup.string(),
-  positionAddress: Yup.string().required("آدرس محل الزامی است"),
+  hotelName: Yup.string().required("Hotel name is required"),
+  description: Yup.string("is required"),
+  positionAddress: Yup.string().required("Address is required"),
 });
 
 export default function Home() {
@@ -80,7 +85,6 @@ export default function Home() {
     };
 
     try {
-      console.log({ dataToSend });
       const response = await fetch(`http://localhost:3000/api/send-whatsapp`, {
         method: "POST",
         headers: {
@@ -211,20 +215,25 @@ export default function Home() {
 
               <div className="flex items-start gap-x-8">
                 <div className="w-1/2 space-y-1">
-                  <label className="block text-sm font-light">"</label>
-                  <Field name="description">
-                    {({ field }) => (
-                      <Textarea
-                        {...field}
-                        color="primary"
-                        variant="faded"
-                        size="md"
-                        radius="sm"
-                        className="w-full"
-                        classNames={{ inputWrapper: "border-1" }}
-                      />
+                  <label className="block text-sm font-light">d</label>
+                  <>
+                    <Field name="description">
+                      {({ field }) => (
+                        <Textarea
+                          {...field}
+                          color="primary"
+                          variant="faded"
+                          size="md"
+                          radius="sm"
+                          className="w-full"
+                          classNames={{ inputWrapper: "border-1" }}
+                        />
+                      )}
+                    </Field>
+                    {errors.name && touched.name && (
+                      <div className="text-xs text-red-500">{errors.name}</div>
                     )}
-                  </Field>
+                  </>
                 </div>
 
                 <div className="flex w-1/2 flex-col">
