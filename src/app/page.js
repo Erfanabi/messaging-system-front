@@ -22,8 +22,8 @@ const validationSchema = Yup.object({
     ),
   whatsapp: Yup.string(),
   hotelName: Yup.string().required("Hotel name is required"),
-  description: Yup.string("is required"),
-  positionAddress: Yup.string().required("Address is required"),
+  position: Yup.string("Position is required"),
+  address: Yup.string().required("Address is required"),
 });
 
 export default function Home() {
@@ -54,8 +54,8 @@ export default function Home() {
     phoneNumber: "+971",
     whatsapp: "+971",
     hotelName: "",
-    description: "",
-    positionAddress: "",
+    position: "",
+    address: "",
     items: {
       pillow: { checked: false, description: "" },
       mattress: { checked: false, description: "" },
@@ -74,8 +74,8 @@ export default function Home() {
       phoneNumber: values.phoneNumber,
       whatsapp: values.whatsapp,
       hotelName: values.hotelName,
-      description: values.description,
-      positionAddress: values.positionAddress,
+      position: values.position,
+      address: values.address,
       items: Object.keys(values.items)
         .filter(key => values.items[key].checked)
         .map(key => ({
@@ -215,9 +215,9 @@ export default function Home() {
 
               <div className="flex items-start gap-x-8">
                 <div className="w-1/2 space-y-1">
-                  <label className="block text-sm font-light">d</label>
+                  <label className="block text-sm font-light">Position</label>
                   <>
-                    <Field name="description">
+                    <Field name="position">
                       {({ field }) => (
                         <Textarea
                           {...field}
@@ -230,8 +230,10 @@ export default function Home() {
                         />
                       )}
                     </Field>
-                    {errors.name && touched.name && (
-                      <div className="text-xs text-red-500">{errors.name}</div>
+                    {errors.position && touched.position && (
+                      <div className="text-xs text-red-500">
+                        {errors.position}
+                      </div>
                     )}
                   </>
                 </div>
@@ -239,16 +241,12 @@ export default function Home() {
                 <div className="flex w-1/2 flex-col">
                   <Field
                     as={FormInput}
-                    name="positionAddress"
-                    label="Position Address"
-                    onChange={e =>
-                      setFieldValue("positionAddress", e.target.value)
-                    }
+                    name="address"
+                    label="Address"
+                    onChange={e => setFieldValue("address", e.target.value)}
                   />
-                  {errors.positionAddress && touched.positionAddress && (
-                    <div className="text-xs text-red-500">
-                      {errors.positionAddress}
-                    </div>
+                  {errors.address && touched.address && (
+                    <div className="text-xs text-red-500">{errors.address}</div>
                   )}
                 </div>
               </div>
@@ -396,7 +394,7 @@ export default function Home() {
                 type="submit"
                 isDisabled={isSubmitting}
               >
-                {isSubmitting ? "SENDING..." : "SEND"}
+                {isSubmitting ? "SENDING..." : "SEND ORDER"}
               </Button>
             </div>
           </Form>
