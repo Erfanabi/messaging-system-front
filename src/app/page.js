@@ -27,6 +27,8 @@ const validationSchema = Yup.object({
 });
 
 export default function Home() {
+  const BASE_URL = process.env.NEXT_PUBLIC_BASE_URL;
+
   const gulfCountries = [
     "ae", // امارات
     "bh", // بحرین
@@ -85,7 +87,7 @@ export default function Home() {
     };
 
     try {
-      const response = await fetch(`http://localhost:3000/api/send-whatsapp`, {
+      const response = await fetch(`${BASE_URL}/send-whatsapp`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
